@@ -1,0 +1,391 @@
+<!-- ======================================================== -->
+<!-- ПЕРЕМЕННЫЕ УСТРОЙСТВА И КОНФИГУРАЦИЯ (В САМОМ НАЧАЛЕ КОДА) -->
+<!-- ======================================================== -->
+<script>
+  const DEVICE_CONFIG = {
+    ram: "12 ГБ + 12 ГБ ОЗУ",
+    processor: "Snapdragon 8s Gen 4",
+    storage: "256 ГБ",
+    os: "OriginOS 6",
+    chip: "vivo Esports Chip Q1",
+    battery: "7000 mAh",
+    backUrl: "index.html",
+    videoSrc: "iqooz10.mp4"
+  };
+</script>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vivo iQOO Z10 Turbo Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0c10;
+      --card-bg: rgba(22, 24, 30, 0.7);
+      --orange-primary: #ff5500;
+      --orange-glow: rgba(255, 85, 0, 0.4);
+      --text-main: #f0f0f0;
+      --text-muted: #a0a0a0;
+      --border-color: rgba(255, 85, 0, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .back-btn-box {
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      border-color: var(--orange-primary);
+      box-shadow: 0 0 15px var(--orange-glow);
+      transform: translateX(-3px);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .brand-tag {
+      color: var(--orange-primary);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      letter-spacing: 4px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #fff 0%, var(--orange-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0;
+    }
+
+    .media-section {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 30px auto 40px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 40px rgba(255, 85, 0, 0.15);
+      background: #000;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-top: 56.25%;
+    }
+
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .top-specs-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .top-spec-card {
+      background: linear-gradient(135deg, rgba(255, 85, 0, 0.1) 0%, rgba(22, 24, 30, 0.8) 100%);
+      border: 1px solid var(--orange-primary);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255, 85, 0, 0.15);
+    }
+
+    .top-spec-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .top-spec-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .price-card {
+      background: linear-gradient(135deg, rgba(255, 85, 0, 0.15) 0%, rgba(15, 15, 20, 0.8) 100%);
+      border: 1px solid var(--orange-primary);
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 0 20px var(--orange-glow);
+    }
+
+    .price-title {
+      font-size: 1rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .price-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .spec-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .spec-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--orange-primary);
+    }
+
+    .spec-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--orange-primary);
+    }
+
+    .spec-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .spec-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .spec-detail {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .signature {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--orange-primary);
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .price-value { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="back-btn-box">
+      <a href="index.html" class="back-btn" id="backBtn">← На главную</a>
+    </div>
+
+    <!-- 1. Заголовок в самом начале -->
+    <header>
+      <div class="brand-tag">Vivo iQOO</div>
+      <h1>Z10 Turbo Pro</h1>
+    </header>
+
+    <!-- 2. Видео сразу после заглавия -->
+    <section class="media-section">
+      <div class="video-wrapper">
+        <video id="phone-video" autoplay loop muted playsinline preload="auto">
+          <source src="" id="videoSourceTag" type="video/mp4">
+          Ваш браузер не поддерживает видеотег.
+        </video>
+      </div>
+    </section>
+
+    <!-- 3. Характеристики и цена ниже видео -->
+    <div class="top-specs-container">
+      <div class="top-spec-card">
+        <div class="top-spec-label">Система</div>
+        <div class="top-spec-value" id="ui-os"></div>
+      </div>
+      <div class="top-spec-card">
+        <div class="top-spec-label">Процессор</div>
+        <div class="top-spec-value" id="ui-processor"></div>
+      </div>
+      <div class="top-spec-card">
+        <div class="top-spec-label">Память телефона</div>
+        <div class="top-spec-value" id="ui-ram-storage"></div>
+      </div>
+      <div class="top-spec-card">
+        <div class="top-spec-label">Чип</div>
+        <div class="top-spec-value" id="ui-chip"></div>
+      </div>
+    </div>
+
+    <div class="price-card">
+      <div class="price-title">Ориентировочная стоимость</div>
+      <div class="price-value">$280 – $380</div>
+    </div>
+
+    <div class="specs-grid">
+      <div class="spec-card">
+        <div class="spec-icon">⚡</div>
+        <div class="spec-label">Процессор</div>
+        <div class="spec-value" id="grid-processor"></div>
+        <div class="spec-detail">4 нм флагманский техпроцесс, высокая энергоэффективность</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">🎮</div>
+        <div class="spec-label">Графический ускоритель</div>
+        <div class="spec-value">Adreno 825</div>
+        <div class="spec-detail">Поддержка Ray Tracing и максимального FPS в играх</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">📱</div>
+        <div class="spec-label">Дисплей & Развёртка</div>
+        <div class="spec-value">144 Гц OLED</div>
+        <div class="spec-detail">1.5K разрешение, пиковая яркость до 4500 нит, PWM 3840 Гц</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">🔋</div>
+        <div class="spec-label">Аккумулятор & Зарядка</div>
+        <div class="spec-value" id="grid-battery"></div>
+        <div class="spec-detail">FlashCharge: 0-100% за ~25 минут, кремниево-углеродный бак</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">💾</div>
+        <div class="spec-label">Память</div>
+        <div class="spec-value" id="grid-storage"></div>
+        <div class="spec-detail">LPDDR5X + UFS 4.0, высокая скорость чтения/записи</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">📷</div>
+        <div class="spec-label">Камера</div>
+        <div class="spec-value">50 MP (OIS) + 8 MP</div>
+        <div class="spec-detail">Основной сенсор Sony с оптической стабилизацией + ширик</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">❄️</div>
+        <div class="spec-label">Охлаждение</div>
+        <div class="spec-value">VC Liquid Cooling</div>
+        <div class="spec-detail">Увеличенная испарительная камера для защиты от троттлинга</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">⚙️</div>
+        <div class="spec-label">ОС & Прошивка</div>
+        <div class="spec-value" id="grid-os"></div>
+        <div class="spec-detail">Плавные анимации, расширенные кастомизации и игровые утилиты</div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Created by: <span class="signature">@goat1488_67</span></p>
+    </footer>
+  </div>
+
+  <script>
+    // Заполняем разметку данными из переменных в шапке файла
+    document.getElementById('ui-os').innerText = DEVICE_CONFIG.os;
+    document.getElementById('ui-processor').innerText = DEVICE_CONFIG.processor;
+    document.getElementById('ui-ram-storage').innerText = `${DEVICE_CONFIG.ram} / ${DEVICE_CONFIG.storage}`;
+    document.getElementById('ui-chip').innerText = DEVICE_CONFIG.chip;
+
+    document.getElementById('grid-processor').innerText = DEVICE_CONFIG.processor;
+    document.getElementById('grid-battery').innerText = DEVICE_CONFIG.battery;
+    document.getElementById('grid-storage').innerText = DEVICE_CONFIG.storage;
+    document.getElementById('grid-os').innerText = DEVICE_CONFIG.os;
+
+    document.getElementById('backBtn').href = DEVICE_CONFIG.backUrl;
+    document.getElementById('videoSourceTag').src = DEVICE_CONFIG.videoSrc;
+
+    const video = document.getElementById('phone-video');
+    video.play().catch(error => {
+      console.log('Автовоспроизведение перехвачено браузером:', error);
+    });
+  </script>
+</body>
+</html>
+
